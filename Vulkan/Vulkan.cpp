@@ -7,6 +7,7 @@
 
 #include "draw.h"
 #include "box.h"
+#include "keypress.h"
 
 GLFWwindow *init_window(int height, int width, float* pos)
 {
@@ -31,11 +32,17 @@ GLFWwindow *init_window(int height, int width, float* pos)
 	return window;
 }
 
-
+void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
+{
+	printf("key was %i\n", key);
+}
 
 
 int main(void)
 {
+	int keys[10];
+	keys[0] = 87;
+	keys[1] = 65;
 	int window_width = 640;
 	int window_height = 480;
 	float window_RGBdata[window_height][window_width][3];
@@ -51,13 +58,22 @@ int main(void)
 	glRasterPos2i(0,0);
 	box test(50,100, 300, 300, &window_RGBdata[0][0][0]);
 	glfwMakeContextCurrent(window);
+
+
+	//glfwSetKeyCallback(window, key_callback);
+
+
 	while (!glfwWindowShouldClose(window))
 	{
+
 		glClear(GL_COLOR_BUFFER_BIT);
 		//writes the data to the screen
 		glDrawPixels(window_width, window_height, GL_RGB, GL_FLOAT, window_RGBdata);
 		glfwSwapBuffers(window);
 		glfwPollEvents();
+
+		checkkeyevent(window, &keys[0], 2);
+
 	}
 	glfwTerminate();
 	return 0;

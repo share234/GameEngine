@@ -1,6 +1,6 @@
 PROJECT_ROOT = $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 
-OBJS = Vulkan.o box.o draw.o 
+OBJS = Vulkan.o box.o draw.o keypress.o
 LIBS = -lGLEW -lGL -lglfw 
 
 
