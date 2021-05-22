@@ -10,7 +10,7 @@
 
 class box {
 public:
-	box(int width, int height, int point1, int point2, char* pos);
+	box(int width, int height, int point1, int point2, float* pos);
 	virtual ~box();
 private:
 	int width;

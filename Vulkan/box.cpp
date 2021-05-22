@@ -7,7 +7,7 @@
 
 #include "box.h"
 #include "draw.h"
-box::box(int iwidth, int iheight, int ipoint1, int ipoint2, char* pos) {
+box::box(int iwidth, int iheight, int ipoint1, int ipoint2, float* pos) {
 	width = iwidth;
 	height = iheight;
 	point1 = ipoint1;

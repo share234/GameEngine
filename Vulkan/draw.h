@@ -8,7 +8,7 @@
 #ifndef DRAW_H_
 #define DRAW_H_
 
-void drawSquare(int h, int w,int sh, int sw, char r, char g, char b, char *pos);
+void drawSquare(int h, int w,int sh, int sw, float r, float g, float b, float *pos);
 /*values for RGB is  0 - 127 only everything else above or below breaks it  */
 
 

@@ -8,10 +8,10 @@
 
 
 
-void drawSquare(int h, int w,int sh, int sw, char r, char g, char b, char *pos)
+void drawSquare(int h, int w,int sh, int sw, float r, float g, float b, float *pos)
 {
 	// max you can use for colour is 255 or 0x7f as anything over this goes into the depths of fucking nowhere
-	char *temp;
+	float *temp;
 	for(int i = 0; i < sh; i++)
 	{
 		for (int j = 0; j < sw; j++)
