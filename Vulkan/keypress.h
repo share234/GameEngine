@@ -8,7 +8,7 @@
 #ifndef KEYPRESS_H_
 #define KEYPRESS_H_
 
-void checkkeyevent(GLFWwindow* window, int* keys, int amount);
+void checkkeyevent(GLFWwindow* window, int* keys);
 
 
 

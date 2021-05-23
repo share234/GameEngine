@@ -8,14 +8,15 @@
 #include <stdio.h>
 
 
-void checkkeyevent(GLFWwindow* window, int* keys, int amount)
+void checkkeyevent(GLFWwindow* window, int* keys)
 {
-
-	for (int i = 0; i < amount; i++){
-		int state = glfwGetKey(window, *(keys + i));
+	for (int i = 0; i < 255; i++){
+		int state = glfwGetKey(window, i);
 		if (state == GLFW_PRESS)
 		{
-			printf("%i key was pressed\n", *(keys + i));
+			*(keys+i*1) = 1;
+			printf("%i key was pressed\n", i);
 		}
 	}
 }
+//https://www.glfw.org/docs/3.3/input_guide.html#input_keyboard

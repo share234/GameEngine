@@ -8,6 +8,7 @@
 #include "draw.h"
 #include "box.h"
 #include "keypress.h"
+#include "character.h"
 
 GLFWwindow *init_window(int height, int width, float* pos)
 {
@@ -40,9 +41,12 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 
 int main(void)
 {
-	int keys[10];
-	keys[0] = 87;
-	keys[1] = 65;
+
+	double last_time = glfwGetTime();
+	int frameCount = 0;
+
+
+	int keys[255];
 	int window_width = 640;
 	int window_height = 480;
 	float window_RGBdata[window_height][window_width][3];
@@ -62,18 +66,44 @@ int main(void)
 
 	//glfwSetKeyCallback(window, key_callback);
 
+	//testing updateable objects
+	updator* update[100];
+	int update_amount;
+	character uhh(10, 10, &window_RGBdata[0][0][0]);
+	update[0] = &uhh;
+	update_amount++;
 
 	while (!glfwWindowShouldClose(window))
 	{
+		double currentTime = glfwGetTime();
+		frameCount++;
+		// If a second has passed.
+		if ( currentTime - last_time >= 1.0 )
+		{
+		    // Display the frame count here any way you want.
+		    printf("%i\n", frameCount);
+		    frameCount = 0;
+		    last_time = currentTime;
+		}
 
+		for(int i = 0; i < update_amount; i++)
+		{
+			update[i]->update();
+		}
+
+		//printf("uh\n");
 		glClear(GL_COLOR_BUFFER_BIT);
 		//writes the data to the screen
 		glDrawPixels(window_width, window_height, GL_RGB, GL_FLOAT, window_RGBdata);
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 
-		checkkeyevent(window, &keys[0], 2);
-
+		//checks which keys are pressed
+		checkkeyevent(window, &keys[0]);
+		if (keys[87] == 1)
+		{
+			uhh.move(0,10);
+		}
 	}
 	glfwTerminate();
 	return 0;
